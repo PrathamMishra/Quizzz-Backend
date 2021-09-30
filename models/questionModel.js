@@ -10,7 +10,7 @@ const questionSchema = new mongoose.Schema({
     question_img:{
         type:[String],
     },
-    option: {
+    options: {
         type: [String],
         trim: true,
         // required: true,
@@ -21,7 +21,7 @@ const questionSchema = new mongoose.Schema({
             message: `More than 5 and less than 2 option are not Allow, Please provide option in a range of 2-5!`
         }
     },
-    Option_img: {
+    option_img: {
         type: [String],
     },
     answer: {
@@ -30,7 +30,7 @@ const questionSchema = new mongoose.Schema({
         required: [true, 'question must have an correct answer'],
         validate: {
             validator: function (val) {
-                return this.option.includes(this.option[val]);
+                return this.options.includes(this.options[val-1]);
             },
             message: `Option Must contain the answer!`
         }
@@ -45,7 +45,6 @@ const questionSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: [true, 'Must have a description'],
         trim: true
     },
     subject: String,

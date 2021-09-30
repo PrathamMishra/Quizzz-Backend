@@ -1,5 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
+const seedData = require("./main__os.json");
+const Question = require("./models/QuestionModel");
 
 
 const globalErrorHandler = require("./controllers/errorController")
@@ -12,6 +14,11 @@ const app = express();
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
+app.get('/seedQuestions',(req,res)=>{
+    Question.insertMany(seedData).then(()=>{
+        res.send("DB seeded");
+    });
+})
 
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));

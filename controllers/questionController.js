@@ -76,7 +76,7 @@ exports.updateQuestion = catchAsync( async (req, res, next) => {
 })
 
 exports.deleteQuestion = catchAsync( async (req, res, next) => {
-    const doc = await Model.findByIdAndDelete(req.params.id)
+    const doc = await Question.findByIdAndDelete(req.params.id)
     
     if(!doc){
       return next(new AppError('No document found with that Id',404))
