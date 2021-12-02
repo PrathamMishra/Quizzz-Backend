@@ -42,11 +42,11 @@ app.post('/createRoom',(req,res)=>{
         sizeLimit: req.body.sizeLimit,
         numOfQuestion: req.body.numOfQuestion,
         questionType: "random",
-        users: req.body.users,
+        users: [],
         estimatedTime: 100
     })
     newRoom.save().then(()=>{
-        res.send(newRoom);
+        res.send({message: "room created"});
     })
 })
 

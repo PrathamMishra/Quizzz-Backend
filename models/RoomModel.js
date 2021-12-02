@@ -14,8 +14,9 @@ const roomSchema = new mongoose.Schema({
     sizeLimit: !Number,
     estimatedTime: !Number,
     numOfQuestion: !Number,
-    questions: [{type: mongoose.Schema.Types.ObjectId, ref: "Question"}],
     questionsType: !String,
+    randomQuestions: [{type: mongoose.Schema.Types.ObjectId, ref: "Question"}],
+    addedQuestions: [{type: mongoose.Schema.Types.ObjectId, ref: "QuestionTemp"}],
     topper: {
         // id: {
         //     type: mongoose.Schema.Types.ObjectId,
@@ -27,12 +28,17 @@ const roomSchema = new mongoose.Schema({
             default: 0
         }
     },
+    started: {
+        type: Boolean,
+        default: false
+    },
     users: [{
         // id: {
         //     type: mongoose.Schema.Types.ObjectId,
         //     ref: "User"
         // },
         name: String,
+        socketId: !String,
         score: {
             type: Number,
             default: 0
@@ -41,12 +47,22 @@ const roomSchema = new mongoose.Schema({
             type: Number,
             default: 0
         },
-        skipped: [Number], 
-        correct: [Number],
-        wrong: [Number],
+        skipped: [{
+            type: Number
+        }], 
+        correct: [{
+            type: Number
+        }],
+        wrong: [{
+            type: Number
+        }],
         warnings: {
             type: Number,
             default: 0
+        },
+        status: {
+            type: String,
+            default: "joined"
         }
     }]
 });
