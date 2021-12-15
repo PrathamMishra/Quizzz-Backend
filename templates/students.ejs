@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student DATA</title>
+</head>
+<body>
+    <h1>Student Data</h1>
+    <% for( let index = 1; index <= users.length; index++ ) { %>
+        <h2><%= index %>. <%= users[index].name %> </h2>
+        <img src="<%= users[index].image %> " alt="IMAGE NOT FOUND" style="border-radius: 5%;"/>
+        <h4>
+            Correct:<br>
+            <% for( let i = 0; i < users[index].correct.length; i++ ) { %>
+                <%= users[index].correct[i]+" " %>
+            <% } %>
+        </h4>
+        <h4>
+            Wrong:<br>
+            <% for( let i = 0; i < users[index].wrong.length; i++ ) { %>
+                <%= users[index].wrong[i]+" " %>
+            <% } %>
+        </h4>
+        <h4>
+            Skipped:<br>
+            <% for( let i = 0; i < users[index].skipped.length; i++ ) { %>
+                <%= users[index].skipped[i]+" " %>
+            <% } %>
+        </h4>
+    <% } %>
+</body>
+</html>

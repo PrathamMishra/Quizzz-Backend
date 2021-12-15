@@ -3,8 +3,6 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 
-
-
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -18,11 +16,11 @@ const userSchema = new mongoose.Schema({
         lowercase:true,
         validate:[validator.isEmail,'Please Provide a valid email']
     },
-    photo:String,
+    photo: String,
     role:{
         type:String,
-        enum:['user','admin','valitater'],
-        default:'user',
+        enum:['student','teacher','Institute'],
+        default:'student',
     },
     password:{
         type:String,
@@ -48,6 +46,10 @@ const userSchema = new mongoose.Schema({
         default:true,
         select:false
     },
+    rating: {
+        type: Number,
+        default: 1000
+    }
 })
 
 userSchema.pre('save',async function(next){

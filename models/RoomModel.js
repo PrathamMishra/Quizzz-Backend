@@ -13,21 +13,10 @@ const roomSchema = new mongoose.Schema({
     difficulty: String,
     sizeLimit: !Number,
     estimatedTime: !Number,
-    numOfQuestion: !Number,
+    numOfQuestions: !Number,
     questionsType: !String,
     randomQuestions: [{type: mongoose.Schema.Types.ObjectId, ref: "Question"}],
     addedQuestions: [{type: mongoose.Schema.Types.ObjectId, ref: "QuestionTemp"}],
-    topper: {
-        // id: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: "User"
-        // },
-        name: String,
-        score: {
-            type: Number,
-            default: 0
-        }
-    },
     started: {
         type: Boolean,
         default: false
@@ -62,8 +51,10 @@ const roomSchema = new mongoose.Schema({
         },
         status: {
             type: String,
+            enum:['joined','left','kicked','banned'],
             default: "joined"
-        }
+        },
+        image: !String
     }]
 });
 

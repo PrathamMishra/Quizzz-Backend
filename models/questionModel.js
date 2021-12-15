@@ -97,7 +97,15 @@ const questionSchema = new mongoose.Schema({
         default: 0,
         // select: false
     },
-
+    marks: {
+        type: Number,
+        required: true,
+        default: 1
+    },
+    negativeMarks: {
+        type: Number,
+        default: 0
+    }
 })
 
 // questionSchema.pre('save', function (next) {

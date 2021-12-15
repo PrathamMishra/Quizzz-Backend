@@ -2,18 +2,18 @@ const express = require('express');
 const morgan = require('morgan');
 const seedData = require("./main__os.json");
 const Question = require("./models/QuestionModel");
-const Room = require("./models/RoomModel");
 const cors = require("cors");
 
 const globalErrorHandler = require("./controllers/errorController")
 const questionRouter = require('./routes/questionRoutes')
 const userRouter = require('./routes/userRoutes')
+const roomRouter = require('./routes/roomRoutes')
 
 
 const app = express();
 
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin:'*', 
     credentials:true,
     optionSuccessStatus:200
 }
@@ -33,22 +33,7 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use('/api/v1/questions', questionRouter);
 app.use('/api/v1/users', userRouter);
-app.post('/createRoom',(req,res)=>{
-    console.log("hit");
-    const newRoom = new Room({
-        roomCode: req.body.roomCode,
-        public: req.body.Public,
-        creator: req.body.name,
-        sizeLimit: req.body.sizeLimit,
-        numOfQuestion: req.body.numOfQuestion,
-        questionType: "random",
-        users: [],
-        estimatedTime: 100
-    })
-    newRoom.save().then(()=>{
-        res.send({message: "room created"});
-    })
-})
+app.use('/api/v1/rooms', roomRouter);
 
 app.all('*', (req, res, next) => {
     console.log("can't find route on this server")
