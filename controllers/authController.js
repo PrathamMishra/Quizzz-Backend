@@ -28,23 +28,75 @@ const createSendToken=(user,statusCode,res)=>{
     })
 }
 
+exports.emailVerfication=catchAsync(async (req, res, next) =>{
+    const hasedToken = crypto
+        .createHash('sha256')
+        .update(req.params.token)
+        .digest('hex')
+
+    const user = await User.findOne({
+        emailVerificationToken: hasedToken,
+        emailVerificationExpires:{ $gt: Date.now()}
+    })
+
+    if(!user) return next(new AppError('token is invalid or has expired',400));
+
+    user.verifed = true;
+    user.emailVerificationToken = undefined;
+    user.emailVerificationExpires = undefined;
+    
+    await user.save({validateBeforeSave:false});
+
+    createSendToken(user,200,res);
+})
+
+
 exports.signup=catchAsync(async (req, res ,next) =>{
     const newUser = await User.create({
         name:req.body.name,
         email:req.body.email,
         password:req.body.password,
-        passwordConfirm:req.body.passwordConfirm
+        passwordConfirm:req.body.passwordConfirm,
+        role:req.body.role,
     })
 
-    createSendToken(newUser,201,res);
+    const verificationToken = newUser.emailVerification();
+    await newUser.save({validateBeforeSave:false})
+
+    const verficationURL = `${req.protocol}://${req.get('host')}/api/v1/users/verification/${verificationToken}`
+    const message = `Verify your password? Submit a PATCH request with your
+        new Password and passwordConfirm to: ${verficationURL}.\nIf you didn't forget your password, please ignore this email!`
+    try{
+        await sendEmail({
+            email:newUser.email,
+            subject:'your verfication token (valid for 10 min)',
+            message
+        })
+        res.status(200).json({
+            status:'success',
+            message:"token sent to email! check your email",
+            // data:{newUser}   
+        })
+    }catch(err){
+        newUser.emailVerificationToken = undefined;
+        newUser.emailVerificationExpires = undefined;
+        await newUser.save({validateBeforeSave:false})
+
+        return next(new AppError('ther was an error sending the email. Try again later!',500))
+    }
 })
 
 exports.login = catchAsync( async (req, res, next)=>{
+    console.log(req.body.email)
     const {email,password} = req.body;
     if(!email || !password){
         return next(new AppError('please provide email and password!',400))
     }
     const user = await User.findOne({email}).select('+password');
+    if(!user.verifed){
+        await User.findOneAndDelete({email});
+        return next(new AppError('email is not verifed create you new account',400))
+    }
 
     if(!user || !(await user.correctpassword(password,user.password))){
         return next(new AppError('Incorrect email or password!',401))
@@ -149,3 +201,31 @@ exports.updatePassword=catchAsync( async(req,res,next)=>{
 
     createSendToken(user,200,res)
 })
+
+// exports.isLoggedIn = async (req,res,next)=>{
+//     if(req.cookies.jwt){
+//         try{
+//             // 1) Verification token
+//             const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET)
+            
+//             // 2) check if user still exists
+//             const currentUser = await User.findById(decoded.id)
+//             if(!currentUser){
+//                 return next()
+//             }
+            
+//             // 3) check if user changed password after the token was issued 
+//             if(currentUser.changedPasswordAfter(decoded.iat)){
+//                 return next()
+//             }
+            
+//             // There is a logged in user
+//             res.locals.user = currentUser;
+//             req.user=currentUser
+//             return next();
+//         }catch(err){
+//             return next();
+//         }
+//     }
+//     next();
+// }
