@@ -3,6 +3,8 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 
+
+
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -16,11 +18,11 @@ const userSchema = new mongoose.Schema({
         lowercase:true,
         validate:[validator.isEmail,'Please Provide a valid email']
     },
-    photo: String,
+    photo:String,
     role:{
         type:String,
-        enum:['student','teacher','Institute'],
-        default:'student',
+        enum:['user','admin','valitater',"student","teacher",'institute'],
+        default:'user',
     },
     password:{
         type:String,
@@ -41,15 +43,17 @@ const userSchema = new mongoose.Schema({
     passwordChangedAt:Date,
     passwordResetToken:String,
     passwordResetExpires:String,
+    emailVerificationToken:String,
+    emailVerificationExpires:String,
+    verifed:{
+        type:Boolean,
+        default:false
+    },
     active:{
         type:Boolean,
         default:true,
         select:false
     },
-    rating: {
-        type: Number,
-        default: 1000
-    }
 })
 
 userSchema.pre('save',async function(next){
@@ -96,6 +100,18 @@ userSchema.methods.createPasswordResetToken = function(){
     this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
     return resetToken
 }
+userSchema.methods.emailVerification = function(){
+    const verificationToken = crypto.randomBytes(32).toString('hex')
+
+    this.emailVerificationToken = crypto
+        .createHash('sha256')
+        .update(verificationToken)
+        .digest('hex')
+
+    this.emailVerificationExpires = Date.now() + 10 * 60 * 1000;
+    return verificationToken
+}
+
 
 const User = mongoose.model('User',userSchema);
 
