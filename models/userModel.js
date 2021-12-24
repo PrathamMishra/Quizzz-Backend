@@ -19,9 +19,8 @@ const userSchema = new mongoose.Schema({
     photo: String,
     role: {
         type: String,
-        required: true,
-        enum: ["student", "teacher", "Institute"],
-        default: "student",
+        enum: ["user", "admin", "valitater", "student", "teacher", "institute"],
+        default: "user",
     },
     password: {
         type: String,
@@ -39,14 +38,6 @@ const userSchema = new mongoose.Schema({
             message: "passwords are not same!",
         },
     },
-    passwordChangedAt: Date,
-    passwordResetToken: String,
-    passwordResetExpires: String,
-    active: {
-        type: Boolean,
-        default: true,
-        select: false,
-    },
     img: {
         type: String,
     },
@@ -57,6 +48,20 @@ const userSchema = new mongoose.Schema({
     institute: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+    },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: String,
+    emailVerificationToken: String,
+    emailVerificationExpires: String,
+    verifed: {
+        type: Boolean,
+        default: false,
+    },
+    active: {
+        type: Boolean,
+        default: true,
+        select: false,
     },
 });
 
@@ -106,6 +111,17 @@ userSchema.methods.createPasswordResetToken = function () {
 
     this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
     return resetToken;
+};
+userSchema.methods.emailVerification = function () {
+    const verificationToken = crypto.randomBytes(32).toString("hex");
+
+    this.emailVerificationToken = crypto
+        .createHash("sha256")
+        .update(verificationToken)
+        .digest("hex");
+
+    this.emailVerificationExpires = Date.now() + 10 * 60 * 1000;
+    return verificationToken;
 };
 
 const User = mongoose.model("User", userSchema);
