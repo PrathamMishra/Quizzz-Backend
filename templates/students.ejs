@@ -9,8 +9,8 @@
 <body>
     <h1>Student Data</h1>
     <% for( let index = 1; index <= users.length; index++ ) { %>
-        <h2><%= index %>. <%= users[index].name %> </h2>
-        <img src="<%= users[index].image %> " alt="IMAGE NOT FOUND" style="border-radius: 5%;"/>
+        <h2><%= index %>. <%= users[index].userData.name %> </h2>
+        <img src="<%= users[index].userData.img %> " alt="IMAGE NOT FOUND" style="border-radius: 5%;"/>
         <h4>
             Correct:<br>
             <% for( let i = 0; i < users[index].correct.length; i++ ) { %>
