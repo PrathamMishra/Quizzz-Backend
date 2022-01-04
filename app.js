@@ -1,7 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
-const seedData = require("./main__os.json");
-const Question = require("./models/QuestionModel");
+const osSeedData = require("./main__os.json");
+const cnSeedData = require("./main__cn.json");
+const dbmsSeedData = require("./mcq.json");
+const Question = require("./models/questionModel");
 const cors = require("cors");
 
 const globalErrorHandler = require("./controllers/errorController");
@@ -21,9 +23,16 @@ if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
 app.get("/seedQuestions", (req, res) => {
-    Question.insertMany(seedData).then(() => {
-        res.send("DB seeded");
+    Question.insertMany(osSeedData).then(() => {
+        console.log("OS DONE");
     });
+    Question.insertMany(cnSeedData).then(() => {
+        console.log("CN DONE");
+    });
+    Question.insertMany(dbmsSeedData).then(() => {
+        console.log("DBMS DONE");
+    });
+    res.send("DB seeded");
 });
 
 app.use(express.json());

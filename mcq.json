@@ -12,9 +12,12 @@
         "explanation": "The term DDL stands for Data Definition Language, used to perform all other essential tasks such as deleting relation and related schemas in defining the structure relation.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "Which of the following provides the ability to query information from the database and insert tuples into, delete tuples from, and modify tuples in the database?",
@@ -29,9 +32,12 @@
         "explanation": "The term DML stands for the Data Manipulation Language used to perform the required changes in the relation's values.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "Which one of the following given statements possibly contains the erro",
@@ -46,9 +52,12 @@
         "explanation": "The Query given in option D does not contain the from clause, which specifies the relation from which the values have to be selected or fetched. Therefore the correct answer is D.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "What do you mean by one to many relationships?",
@@ -63,9 +72,12 @@
         "explanation": "We can understand the one to many relationship as a teacher who may have more than one class to attend.",
         "subject": "DBMS",
         "topic": "ER-Diagram",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": " A Database Management System is a type of _________software.",
@@ -80,9 +92,12 @@
         "explanation": "The DBMS (or Database Management System) is a kind of system software used for several operations such as creating tables/databases, storing data, managing databases. It also allows modifying the data stored in the database as well.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "The term FAT is stands for_____",
@@ -97,9 +112,12 @@
         "explanation": "The term FAT can be described as a file structure (or file architecture). In which all the information about the files where they are stored and where all these files need to be stored or in which directory, all that information generally stored in the file structure. Therefore the Operating system creates a table in which all the files and clusters are stored, known as the file allocation table.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "Which of the following can be considered as the maximum size that is supported by FAT?",
@@ -114,9 +132,12 @@
         "explanation": "The files with a size of less than 4 GB or equal to 4GB are easily supported by the FAT. All files with a size greater than the maximum size (or is 4Gb) are not supported by the FAT.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "The term NTFS refers to which one of the following?",
@@ -131,9 +152,12 @@
         "explanation": "n the old operating systems, the file structure used to store and manage files is called the FAT 32 ( or File Allocation Table). Later, when the technology evolves with time, a new type of file system is introduced, known as the New Technology File System. It overcomes all the drawbacks, issues that exist in FAT file architecture and has many other new features such as it is fast, it can handle files whose size is even greater than 4 GB.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "Which of the following can be considered as the maximum size that is supported by NTFS?",
@@ -148,9 +172,12 @@
         "explanation": "The New Technology File System was introduced in 1993 for the very first time as a part of new Windows operating systems (Windows NT 3.1). You may be surprised to know that windows are still using it because of its fast speed and can support files whose size is up to 16TB (16 terabytes), which is much more than that file size supported by the old system.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "A huge collection of the information or data accumulated form several different sources is known as ________:",
@@ -165,9 +192,12 @@
         "explanation": "A huge collection of different types of data/information which collected from many different sources stored in one place is called a data warehouse. It works just like the standard warehouse, which is generally a type of holding area/building to store the different types of different goods in huge quantities until they are further distributed. Therefore the correct answer is Data Warehouse.",
         "subject": "DBMS",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "easy"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "easy",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "Assume the R is a relation on a set A, aRb is partially ordered such that a and b are _____________",
@@ -182,9 +212,12 @@
         "explanation": "A partially ordered relation refers to one which is Reflexive, Transitive and Antisymmetric.",
         "subject": "TOC",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "medium"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "medium",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "A regular language over an alphabet ∑ is one that cannot be obtained from the basic languages using the operation",
@@ -199,9 +232,12 @@
         "explanation": "Union, Intersection, Concatenation, Kleene*, Reverse are all the closure properties of Regular Language.",
         "subject": "TOC",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "medium"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "medium",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "The minimum number of states required to recognize an octal number divisible by 3 are/is",
@@ -216,9 +252,12 @@
         "explanation": "According to the question, minimum of 3 states are required to recognize an octal number divisible by 3.",
         "subject": "TOC",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "medium"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "medium",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "Which of the following is not a part of 5-tuple finite automata?",
@@ -233,12 +272,16 @@
         "explanation": "A FA can be represented as FA = (Q, ∑, δ, q0, F) where Q=Finite Set of States, ∑=Finite Input Alphabet, δ=Transition Function, q0=Initial State, F=Final/Acceptance State).",
         "subject": "TOC",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "medium"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "medium",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
-        "question_img": "If an Infinite language is passed to Machine M, the subsidiary which gives a finite solution to the infinite input tape is ______________",
+        "question": "If an Infinite language is passed to Machine M, the subsidiary which gives a finite solution to the infinite input tape is ______________",
+        "question_img":"",
         "options": [
             "Compiler","Interpreter","Loader and Linkers","None of the mentioned"
         ],
@@ -249,9 +292,12 @@
         "explanation": "A Compiler is used to give a finite solution to an infinite phenomenon. An example of an infinite phenomenon is Language C, etc.",
         "subject": "TOC",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "medium"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "medium",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question":  "The number of elements in the set for the Language L={xϵ(∑r) *|length if x is at most 2} and ∑={0,1} is _________",
@@ -266,9 +312,12 @@
         "explanation": "∑r = {1,0} and a Kleene* operation would lead to the following set=COUNT{ε,0,1,00,11,01,10} = 7.",
         "subject": "TOC",
         "topic": "Basics",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "medium"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "medium",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "L is a regular Language if and only If the set of __________ classes of IL is finite.",
@@ -283,9 +332,12 @@
         "explanation": "According to Myhill Nerode theorem, the corollary proves the given statement correct for equivalence classes.",
         "subject": "TOC",
         "topic": "Regular Expression",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "hard"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "hard",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "A language can be generated from simple primitive language in a simple way if and only if",
@@ -300,9 +352,12 @@
         "explanation": "A language is regular if and only if it can be accepted by a finite automaton. Secondly, It supports no concept of auxiliary memory as it loses the data as soon as the device is shut down.",
         "subject": "TOC",
         "topic": "Regular Expression",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "hard"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "hard",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     },
     {
         "question": "If R represents a regular language, which of the following represents the Venn-diagram most correctly?",
@@ -317,8 +372,11 @@
         "explanation": "This is answer. Maan ja.",
         "subject": "TOC",
         "topic": "Regular Expression",
-        "exam": "GATE",
-        "field": "B.tech",
-        "difficulty": "hard"
+        "exam": "GATE CSE",
+        "field": "Engineering",
+        "difficulty": "hard",
+        "timeLimit": 60,
+        "marks": 1,
+        "negativeMarks": -1
     }
 ]

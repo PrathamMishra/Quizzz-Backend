@@ -7,11 +7,76 @@
     <title>Questions</title>
 </head>
 <body>
-    <% for( let index = 0; index < Questions.length; index++ ) { %>
+    <h1>Room Name: <%= name %></h1>
+    <h2>Created By: <%= creator %></h2>
+    <% if(user){ %>
+        <h2><%= user.userData.name %></h2>
+        <h3>Your performance:</h3>
+        <h3>Correct: 
+            <% for(let i = 0;i<user.correct.length;i++){ %>
+                <span><%= user.correct[i] %> </span>
+            <% } %>
+        </h3>
+        <h3>Wrong:  
+            <% for(let i = 0;i<user.wrong.length;i++){ %>
+                <span><%= user.wrong[i] %> </span>
+            <% } %>
+        </h3>
+        <h3>Skipped:  
+            <% for(let i = 0;i<user.skipped.length;i++){ %>
+                <span><%= user.skipped[i] %> </span>
+            <% } %>
+        </h3>
+    <% } %>
+    <% for( let index = 0; index < questions.length; index++ ) { %>
         <h3>
             <%= index+1 %>. 
-            <%= Questions[index].question %>  
+            <%= questions[index].question %>  
         </h3>
+        <% if(questions[index].question_img){ %>
+            <img src="<%= questions[index].question_img %>" alt = "question image" />
+        <% } %>
+        <% if(questions[index].questionPreviousRecord){ %>
+            <h3><%= questions[index].questionPreviousRecord %></h3>
+        <% } %>
+        <h3>Marks: <%= questions[index].marks %></h3>
+        <h3>Negative Marks: <%= questions[index].negativeMarks %></h3>
+        <h3></h3>
+        <h4 class="<% if(questions[index].answer === 0){ %>correct<% } %>">
+            A. 
+            <%= questions[index].options[0] %>
+            <% if(questions[index].option_img[0]){ %>
+                <img src="<%= questions[index].option_img[0] %>" alt = "option image" />
+            <% } %>
+        </h4>
+        <h4 class="<% if(questions[index].answer === 1){ %>correct<% } %>">
+            B. 
+            <%= questions[index].options[1] %>
+            <% if(questions[index].option_img[1]){ %>
+                <img src="<%= questions[index].option_img[1] %>" alt = "option image" />
+            <% } %>
+        </h4>
+        <h4 class="<% if(questions[index].answer === 2){ %>correct<% } %>">
+            C. 
+            <%= questions[index].options[2] %>
+            <% if(questions[index].option_img[2]){ %>
+                <img src="<%= questions[index].option_img[2] %>" alt = "option image" />
+            <% } %>
+        </h4>
+        <h4 class="<% if(questions[index].answer === 3){ %>correct<% } %>">
+            D. 
+            <%= questions[index].options[3] %>
+            <% if(questions[index].option_img[3]){ %>
+                <img src="<%= questions[index].option_img[3] %>" alt = "option image" />
+            <% } %>
+        </h4>
+        <h4>Explanation :</h4>
+        <h5><%= questions[index].explanation %></h5>
+        <% if(questions[index].explanation_img){ %>
+            <% for(let i=0;i<questions[index].explanation_img.length;i++){ %>
+                <img src="<%= questions[index].explanation_img[i] %>" alt = "explanation image" />
+            <% } %>
+        <% } %>
     <% } %>
 </body>
 </html>

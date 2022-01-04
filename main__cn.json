@@ -13,11 +13,14 @@
     ],
     "answer": 1,
     "explanation": "The Stream Control Transmission Protocol (SCTP) is a transport layer protocol used in networking system where streams of data are to be continuously transmitted between two connected network nodes. Some of the other transport layer protocols are RDP, RUDP, TCP, DCCP, UDP etc.",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Transport Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 {
     "question": "Which one of the following is not a function of network layer?",
@@ -33,13 +36,15 @@
     ],
     "answer": 4,
     "explanation": "In the OSI model, network layer is the third layer and it provides data routing paths for network communications. Error control is a function of the data link layer and the transport layer.",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Network  Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
-}
-,
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
+},
 {
     "question": "Which of the following routing algorithms can be used for network layer design?",
     "question_img": "",
@@ -55,11 +60,14 @@
     ],
     "answer": 4,
     "explanation": "The routing algorithm is what decides where a packet should go next. There are several routing techniques like shortest path algorithm, static and dynamic routing, decentralized routing, distance vector routing, link state routing, Hierarchical routing etc. The routing algorithms go hand in hand with the operations of all the routers in the networks. The routers are the main participants in these algorithms.",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Network  Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ,
 {
@@ -77,11 +85,14 @@
     ],
     "answer": 3,
     "explanation": " In multi-destination routing, there is more than one receiver and the route for each destination which is contained in a list of destinations is to be found by the routing algorithm. Multi-destination routing is also used in broadcasting.",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Network  Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ,
 {
@@ -99,14 +110,15 @@
     ],
     "answer": 4,
     "explanation": "Channel coding is the function of physical layer. Data link layer mainly deals with framing, error control and flow control. Data link layer is the layer where the packets are encapsulated into frames. ",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Data Link Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
-}
-,
-
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
+},
 {
     "question": "Which sublayer of the data link layer performs data link functions that depend upon the type of medium?",
     "question_img": "",
@@ -122,11 +134,14 @@
     ],
     "answer": 2,
     "explanation": "Media access control (MAC) deals with transmission of data packets to and from the network-interface card, and also to and from another remotely shared channel. The MAC sublayer also prevents collision using protocols like CSMA/CD. ",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Data Link Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ,
 {
@@ -144,11 +159,14 @@
     ],
     "answer": 4,
     "explanation": "There are many data link layer protocols. Some of them are SDLC (synchronous data link protocol), HDLC (High level data link control), SLIP (serial line interface protocol), PPP (Point to point protocol) etc. These protocols are used to provide the logical link control function of the Data Link Layer.",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Data Link Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ,
 {
@@ -166,11 +184,14 @@
     ],
     "answer": 3,
     "explanation": "In CSMA/CD, it deals with detection of collision after collision has occurred, whereas CSMA/CA deals with preventing collision. CSMA/CD is abbreviation for Carrier Sensing Multiple Access/Collision detection. CSMA/CA is abbreviation for Carrier Sensing Multiple Access/Collision Avoidance.  These protocols are used for efficient multiple channel access",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Data Link Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ,
 {
@@ -188,11 +209,14 @@
     ],
     "answer": 3,
     "explanation": "Both TCP and UDP are transport layer protocol in networking. TCP is an abbreviation for Transmission Control Protocol and UDP is an abbreviation for User Datagram Protocol. TCP is connection oriented whereas UDP is connectionless.",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Transport Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ,
 {
@@ -210,10 +234,13 @@
     ],
     "answer": 1,
     "explanation": "The datagram congestion control is a transport layer protocol which deals with reliable connection setup, teardown, congestion control, explicit congestion notification, and feature negotiation. It is used in modern day systems where there are really high chances of congestion. The protocol was last updated in the year 2008.",
-    "subject": "CN",
+    "subject": "Computer Networks",
     "topic": "Transport Layer",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ]

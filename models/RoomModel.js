@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const roomSchema = new mongoose.Schema({
+    name: !String,
     roomCode: !String,
     public: !Boolean,
     creator: {
@@ -13,12 +14,27 @@ const roomSchema = new mongoose.Schema({
     },
     subject: String,
     topic: String,
-    difficulty: String,
+    difficulty: {
+        type: String,
+        required: true,
+        enum: ["easy", "medium", "hard", "mixed"],
+        default: "mixed",
+    },
     sizeLimit: !Number,
     estimatedTime: !Number,
     numOfQuestions: !Number,
-    questionsType: !String,
-    roomType: !String,
+    questionType: {
+        type: String,
+        required: true,
+        enum: ["random", "added"],
+        default: "random",
+    },
+    roomType: {
+        type: String,
+        required: true,
+        enum: ["oneVsOne", "challenge", "contest"],
+        default: "challenge",
+    },
     randomQuestions: [
         { type: mongoose.Schema.Types.ObjectId, ref: "Question" },
     ],

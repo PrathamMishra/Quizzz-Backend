@@ -61,13 +61,6 @@ const tempQuestionSchema = new mongoose.Schema({
         type: [String],
         trim: true,
     },
-    createAt: {
-        type: Date,
-        default: Date.now(),
-    },
-    createBy: {
-        type: String,
-    },
     marks: {
         type: Number,
         required: true,
@@ -76,6 +69,10 @@ const tempQuestionSchema = new mongoose.Schema({
     negativeMarks: {
         type: Number,
         default: 0,
+    },
+    timeLimit: {
+        type: Number,
+        required: true,
     },
 });
 

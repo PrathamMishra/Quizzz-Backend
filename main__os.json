@@ -1,6 +1,6 @@
 [
     {
-    "question": " Which of the following is NOT a valid deadlock prevention scheme? (GATE CS 2000)",
+    "question": " Which of the following is NOT a valid deadlock prevention scheme? (GATE CSE CS 2000)",
     "question_img": "",
     "options": [
         " Release all resources before requesting a new resource",
@@ -12,15 +12,18 @@
         "","","",""
     ],
     "answer": 3,
-    "explanation": "",
-    "subject": "OS",
-    "topic": "GENERAL OS",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
+    "topic": "GENERAL Operating Systems",
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 {
-    "question": " A graphics card has on board memory of 1 MB. Which of the following modes can the card not support? (GATE CS 2000)",
+    "question": " A graphics card has on board memory of 1 MB. Which of the following modes can the card not support? (GATE CSE CS 2000)",
     "question_img": "",
     "options": [
         " 1600 x 400 resolution with 256 colours on a 17 inch monitor",
@@ -33,14 +36,17 @@
     ],
     "answer": 2,
     "explanation": "Monitor size doesn’t matter here. So, we can easily deduce that answer should be (b) as this has the highest memory requirements. Let us verify it. Number of bits required to store a 16M colors pixel = ceil(log2(16*1000000)) = 24 \n Number of bytes required for 1600 x 400 resolution with 16M colors = (1600 * 400 * 2/8 which is 192000000 (greater than 1MB).",
-    "subject": "OS",
-    "topic": "GENERAL OS",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "subject": "Operating Systems",
+    "topic": "GENERAL Operating Systems",
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 {
-    "question": "Which of the following requires a device driver? (GATE CS 200",
+    "question": "Which of the following requires a device driver? (GATE CSE CS 2001)",
     "question_img": "",
     "options": [
         " Register",
@@ -52,12 +58,15 @@
         "","","",""
     ],
     "answer": 4,
-    "explanation": "",
-    "subject": "OS",
-    "topic": "GENERAL OS",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
+    "topic": "GENERAL Operating Systems",
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 
 {
@@ -73,12 +82,15 @@
         "","","",""
     ],
     "answer": 1,
-    "explanation": "",
-    "subject": "OS",
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
     "topic": "CPU Scheduling",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 
 {
@@ -94,12 +106,15 @@
         "","","",""
     ],
     "answer": 1,
-    "explanation": "",
-    "subject": "OS",
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
     "topic": "CPU Scheduling",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 
 {
@@ -115,12 +130,15 @@
         "","","",""
     ],
     "answer": 2,
-    "explanation": "",
-    "subject": "OS",
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
     "topic": "CPU Scheduling",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 
 {
@@ -137,11 +155,14 @@
     ],
     "answer": 2,
     "explanation": "User level threads are managed by thread library and the kernel is unaware of them.",
-    "subject": "OS",
+    "subject": "Operating Systems",
     "topic": "CPU Scheduling",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 
 {
@@ -157,12 +178,15 @@
         "","","",""
     ],
     "answer": 4,
-    "explanation": "",
-    "subject": "OS",
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
     "topic": "Swapping Processes – 1",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
 
 {
@@ -178,15 +202,16 @@
         "","","",""
     ],
     "answer": 2,
-    "explanation": "",
-    "subject": "OS",
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
     "topic": "Swapping Processes – 1",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 },
-
-
 {
     "question": " Which of the following is TRUE?",
     "question_img": "",
@@ -200,11 +225,14 @@
         "","","",""
     ],
     "answer": 3,
-    "explanation": "",
-    "subject": "OS",
+    "explanation": "NOT GIVEN",
+    "subject": "Operating Systems",
     "topic": "Swapping Processes – 1",
-    "exam": "GATE",
-    "field": "B.tech",
-    "difficulty": "MEDIUM"
+    "exam": "GATE CSE",
+    "field": "Engineering",
+    "difficulty": "medium",
+    "timeLimit": 60,
+    "marks": 1,
+    "negativeMarks": -1
 }
 ]

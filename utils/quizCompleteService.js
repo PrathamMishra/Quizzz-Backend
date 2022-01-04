@@ -22,88 +22,118 @@ function compare(a, b) {
     return 0;
 }
 
-function getRating(type, rank, rating){
-    let mult = 1, finalPoint = 0;
-    if(type==='medium')mult=2;
-    else if(type==='hard')mult=3;
-    if(rank<=50){
-        switch(rank){
-            case rank<=1:
-                finalPoint = 130*mult;break;
-            case rank==2:
-                finalPoint = 80*mult;break;
-            case rank==3:
-                finalPoint = 60*mult;break;
+function getRating(type, rank, rating) {
+    let mult = 1,
+        finalPoint = 0;
+    if (type === "medium") mult = 2;
+    else if (type === "hard") mult = 3;
+    if (rank <= 50) {
+        switch (rank) {
+            case rank <= 1:
+                finalPoint = 130 * mult;
+                break;
+            case rank == 2:
+                finalPoint = 80 * mult;
+                break;
+            case rank == 3:
+                finalPoint = 60 * mult;
+                break;
             case rank == 4 || rank == 5:
-                finalPoint = 40*mult;break;
-            case rank>=6 && rank <=10:
-                finalPoint = 30*mult;break;
-            case rank>=11 && rank <=20:
-                finalPoint = 20*mult;break;
-            case rank>=21 && rank <=50:
-                finalPoint = 10*mult;break;
+                finalPoint = 40 * mult;
+                break;
+            case rank >= 6 && rank <= 10:
+                finalPoint = 30 * mult;
+                break;
+            case rank >= 11 && rank <= 20:
+                finalPoint = 20 * mult;
+                break;
+            case rank >= 21 && rank <= 50:
+                finalPoint = 10 * mult;
+                break;
             default:
-                finalPoint = 0;break;
+                finalPoint = 0;
+                break;
         }
-        switch(rating){
-            case rating>=1250 && rating <1500:
-                finalPoint = Math.floor(finalPoint*0.85);break;
-            case rating>=1500 && rating <2000:
-                finalPoint = Math.floor(finalPoint*0.7);break;
-            case rating>=2000 && rating <2500:
-                finalPoint = Math.floor(finalPoint*0.55);break;
-            case rating>=2500 && rating <3500:
-                finalPoint = Math.floor(finalPoint*0.40);break;
-            case rating>=3500 && rating <5000:
-                finalPoint = Math.floor(finalPoint*0.25);break;
+        switch (rating) {
+            case rating >= 1250 && rating < 1500:
+                finalPoint = Math.floor(finalPoint * 0.85);
+                break;
+            case rating >= 1500 && rating < 2000:
+                finalPoint = Math.floor(finalPoint * 0.7);
+                break;
+            case rating >= 2000 && rating < 2500:
+                finalPoint = Math.floor(finalPoint * 0.55);
+                break;
+            case rating >= 2500 && rating < 3500:
+                finalPoint = Math.floor(finalPoint * 0.4);
+                break;
+            case rating >= 3500 && rating < 5000:
+                finalPoint = Math.floor(finalPoint * 0.25);
+                break;
             case rating >= 5000:
-                finalPoint = Math.floor(finalPoint*0.10);break;
+                finalPoint = Math.floor(finalPoint * 0.1);
+                break;
             default:
-                finalPoint = Math.floor(finalPoint*1);break;
+                finalPoint = Math.floor(finalPoint * 1);
+                break;
         }
-    }
-    else{
-        switch(rank){
-            case rank==100:
-                finalPoint = -130*mult;break;
-            case rank==99:
-                finalPoint = -80*mult;break;
-            case rank==98:
-                finalPoint = -60*mult;break;
+    } else {
+        switch (rank) {
+            case rank == 100:
+                finalPoint = -130 * mult;
+                break;
+            case rank == 99:
+                finalPoint = -80 * mult;
+                break;
+            case rank == 98:
+                finalPoint = -60 * mult;
+                break;
             case rank == 97 || rank == 96:
-                finalPoint = -40*mult;break;
-            case rank>=91 && rank <=95:
-                finalPoint = -30*mult;break;
-            case rank>=81 && rank <=90:
-                finalPoint = -20*mult;break;
-            case rank>=51 && rank <=80:
-                finalPoint = -10*mult;break;
+                finalPoint = -40 * mult;
+                break;
+            case rank >= 91 && rank <= 95:
+                finalPoint = -30 * mult;
+                break;
+            case rank >= 81 && rank <= 90:
+                finalPoint = -20 * mult;
+                break;
+            case rank >= 51 && rank <= 80:
+                finalPoint = -10 * mult;
+                break;
             default:
-                finalPoint = 0;break;
+                finalPoint = 0;
+                break;
         }
-        switch(rating){
+        switch (rating) {
             case rating < 1250:
-                finalPoint = Math.floor(finalPoint*0.1);break;
-            case rating>=1250 && rating <1500:
-                finalPoint = Math.floor(finalPoint*0.25);break;
-            case rating>=1500 && rating <2000:
-                finalPoint = Math.floor(finalPoint*0.40);break;
-            case rating>=2000 && rating <2500:
-                finalPoint = Math.floor(finalPoint*0.55);break;
-            case rating>=2500 && rating <3500:
-                finalPoint = Math.floor(finalPoint*0.70);break;
-            case rating>=3500 && rating <5000:
-                finalPoint = Math.floor(finalPoint*0.85);break;
+                finalPoint = Math.floor(finalPoint * 0.1);
+                break;
+            case rating >= 1250 && rating < 1500:
+                finalPoint = Math.floor(finalPoint * 0.25);
+                break;
+            case rating >= 1500 && rating < 2000:
+                finalPoint = Math.floor(finalPoint * 0.4);
+                break;
+            case rating >= 2000 && rating < 2500:
+                finalPoint = Math.floor(finalPoint * 0.55);
+                break;
+            case rating >= 2500 && rating < 3500:
+                finalPoint = Math.floor(finalPoint * 0.7);
+                break;
+            case rating >= 3500 && rating < 5000:
+                finalPoint = Math.floor(finalPoint * 0.85);
+                break;
             default:
-                finalPoint = Math.floor(finalPoint*1);break;
+                finalPoint = Math.floor(finalPoint * 1);
+                break;
         }
     }
     return finalPoint;
 }
 
-exports.studentDataService = (roomCode) => {
+exports.studentDataService = catchAsync(async (roomCode) => {
     const RoomData = await Room.findOne({ roomCode }).populate(
-        "users.userData",
+        "users.userData creator",
         "name img email rating"
     );
     RoomData.users.sort(compare);
@@ -125,7 +155,7 @@ exports.studentDataService = (roomCode) => {
             catchAsync(async function (callback) {
                 let rank = 1,
                     prevData = RoomData.users[0].score;
-                    prevTime = RoomData.users[0].time;
+                prevTime = RoomData.users[0].time;
                 const arrayData = RoomData.users.map((data) => {
                     const obj = {};
                     if (data.score === prevData && data.time === prevTime) {
@@ -135,7 +165,7 @@ exports.studentDataService = (roomCode) => {
                         obj.rank = rank;
                     }
                     obj.name = data.userData.name || "";
-                    obj.status = data.status || '-';
+                    obj.status = data.status || "-";
                     obj.score = data.score || 0;
                     obj.minutes = data.time / 60;
                     obj.seconds = data.time % 60;
@@ -204,7 +234,7 @@ exports.studentDataService = (roomCode) => {
         ],
         catchAsync(async function (err, results) {
             await sendEmail({
-                to: RoomData.creatorMail,
+                to: RoomData.creator.email,
                 subject: "Student Data",
                 text: `Here is data of all of the participants of your contest ${RoomData.name}`,
                 attachments: [
@@ -220,7 +250,7 @@ exports.studentDataService = (roomCode) => {
             });
         })
     );
-};
+});
 
 exports.updateRating = catchAsync(async (roomCode) => {
     const RoomData = await Room.findOne({ roomCode });
@@ -232,10 +262,12 @@ exports.updateRating = catchAsync(async (roomCode) => {
         institute.rating += RoomData.users.length + 10;
     else institute.rating += RoomData.users.length;
     await institute.save();
-    const validPlayers = RoomData.users.filter((data)=>(data.status!== 'kicked' && data.status!== 'banned'));
+    const validPlayers = RoomData.users.filter(
+        (data) => data.status !== "kicked" && data.status !== "banned"
+    );
     validPlayers.sort(compare);
     let rank = 1,
-    prevData = RoomData.users[0].score;
+        prevData = RoomData.users[0].score;
     prevTime = RoomData.users[0].time;
     const arrayData = validPlayers.map((data) => {
         const obj = {};
@@ -250,20 +282,95 @@ exports.updateRating = catchAsync(async (roomCode) => {
     });
     async.each(
         arrayData,
-        async(user,cb) => {
-            try{
-                const person = await User.findById(user.userData,'rating');
-                const rating = getRating(RoomData.difficulty,Math.floor(user.rank*100/(arrayData.length)),person.rating);
+        async (user, cb) => {
+            try {
+                const person = await User.findById(user.userData, "rating");
+                const rating = getRating(
+                    RoomData.difficulty,
+                    Math.floor((user.rank * 100) / arrayData.length),
+                    person.rating
+                );
                 person.rating += rating;
                 await person.save();
                 cb();
-            }catch(e){
+            } catch (e) {
                 cb(e);
             }
         },
         (err) => {
             if (err) console.log(err);
             else console.log("RATINGS UPDATED");
+        }
+    );
+});
+
+exports.mailQuestions = catchAsync(async (roomCode) => {
+    const RoomData = await Room.findOne({ roomCode }).populate(
+        "randomQuestions addedQuestions creator users.userData"
+    );
+    let questions;
+    if (RoomData.questionsType === "randomQuestion") {
+        questions = randomQuestions;
+    } else {
+        questions = addedQuestions;
+    }
+    const html = await ejs.renderFile("../templates/questions.ejs", {
+        user: null,
+        name: RoomData.name,
+        creator: RoomData.creator.name,
+        questions: questions,
+    });
+    htmlPdf.create(html).toBuffer(
+        catchAsync(async (err, buffer) => {
+            if (err) {
+                console.log(err);
+            } else {
+                await sendEmail({
+                    to: RoomData.creator.email,
+                    subject: "Question Data",
+                    text: `Here are Questions of your contest ${RoomData.name}`,
+                    attachments: [
+                        {
+                            filename: "Questions.pdf",
+                            content: buffer,
+                        },
+                    ],
+                });
+            }
+        })
+    );
+    async.each(
+        RoomData.users,
+        catchAsync(async (user) => {
+            const html = await ejs.renderFile("../templates/questions.ejs", {
+                user,
+                name: RoomData.name,
+                creator: RoomData.creator.name,
+                questions,
+            });
+            htmlPdf.create(html).toBuffer(
+                catchAsync(async (err, buffer) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        await sendEmail({
+                            to: user.userData.email,
+                            subject: "Question Data",
+                            text: `Here are Questions of your contest ${RoomData.name}`,
+                            attachments: [
+                                {
+                                    filename: "Questions.pdf",
+                                    content: buffer,
+                                },
+                            ],
+                        });
+                    }
+                })
+            );
+        }),
+        (err) => {
+            if (err) console.log(err);
+            else console.log("QUESTIONS SENT");
         }
     );
 });

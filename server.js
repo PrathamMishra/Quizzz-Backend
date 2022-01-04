@@ -4,10 +4,14 @@ const http = require("http");
 const { Server } = require("socket.io");
 
 const app = require("./app");
-const { studentDataService } = require("./utils/quizCompleteService.js");
+const {
+    studentDataService,
+    updateRating,
+    mailQuestions,
+} = require("./utils/quizCompleteService.js");
 const Room = require("./models/RoomModel.js");
-const Question = require("./models/QuestionModel.js");
-const tempQuestion = require("./models/tempQuestionModel.js");
+const Question = require("./models/questionModel");
+const tempQuestion = require("./models/tempQuestionModel");
 const User = require("./models/userModel.js");
 const catchAsync = require("./utils/catchAsync");
 
@@ -34,13 +38,11 @@ io.on("connection", (socket) => {
         try {
             let RoomData = await Room.findOne({ roomCode });
             if (!RoomData) {
-                console.log("Room not found");
-                //callback({ type: "known", message: "Room not found" }, null);
+                callback({ type: "known", message: "Room not found" }, null);
                 return;
             }
             if (RoomData.started) {
-                console.log("Match Started");
-                //callback({ type: "known", message: "Match Started" }, null);
+                callback({ type: "known", message: "Match Started" }, null);
                 return;
             }
             if (
@@ -50,43 +52,50 @@ io.on("connection", (socket) => {
                 RoomData.creatorSocket = socket.id;
                 await RoomData.save();
                 socket.join(roomCode);
-                console.log("Creator Joined");
-                // callback({ type: "known", message: "Already in room" }, null);
+                callback(null, RoomData);
+                return;
+            }
+            if (
+                RoomData.creatorSocket !== "" &&
+                RoomData.creator.toString() === userId
+            ) {
+                callback(
+                    { type: "known", message: "CREATOR ALREADY JOINED ONCE" },
+                    null
+                );
                 return;
             }
             if (RoomData.creatorSocket === "") {
-                console.log("Creator Not Joined");
-                // callback({ type: "known", message: "Already in room" }, null);
+                callback(
+                    { type: "known", message: "CREATOR NOT JOINED YET" },
+                    null
+                );
                 return;
             }
             if (RoomData.users.findIndex((user) => user.id === userId) !== -1) {
-                console.log("Already in room");
-                // callback({ type: "known", message: "Already in room" }, null);
+                callback({ type: "known", message: "Already in room" }, null);
                 return;
             }
             if (
                 RoomData.users.filter((user) => user.status !== "kicked")
                     .length === RoomData.sizeLimit
             ) {
-                console.log("Room full");
-                // callback({ type: "known", message: "Room Full" });
+                callback({ type: "known", message: "Room Full" });
                 return;
             }
+            console.log("NEW USER");
             await User.findByIdAndUpdate(userId, { img });
             socket.join(roomCode);
             RoomData.users.push({ userData: userId, socketId: socket.id });
-            console.log(RoomData);
             await RoomData.save();
             RoomData = await Room.findOne({ roomCode }).populate(
                 "users.userData",
                 "name photo rating"
             );
-            console.log("REPOP", RoomData);
             io.to(roomCode).emit("list", RoomData.users);
-            // callback(null, RoomData);
+            callback(null, RoomData);
         } catch (e) {
-            console.log(e);
-            // callback(e, null);
+            callback(e, null);
         }
     });
     socket.on("start", async (roomCode) => {
@@ -175,9 +184,7 @@ io.on("connection", (socket) => {
             console.log(count);
             await RoomData.save();
             if (RoomData.numOfQuestion === count) {
-                // socket.emit('quizComplete',{});
-                console.log("quiz complete");
-                // callback(null, { message: "Quiz Complete" });
+                callback(null, { message: "Quiz Complete" });
             } else {
                 if (RoomData.questionType === "random") {
                     currentQuestion = await Question.findById(
@@ -195,11 +202,10 @@ io.on("connection", (socket) => {
                         negativeMarks: currentQuestion.negativeMarks,
                         question: currentQuestion.question,
                     };
-                    console.log(nextQuestion);
-                    // callback(null, {
-                    //     message: "Question",
-                    //     Question: Question,
-                    // });
+                    callback(null, {
+                        message: "Question",
+                        Question: Question,
+                    });
                 } else {
                     currentQuestion = await tempQuestion.findById(
                         RoomData.addedQuestions[count]
@@ -216,18 +222,16 @@ io.on("connection", (socket) => {
                         negativeMarks: currentQuestion.negativeMarks,
                         question: currentQuestion.question,
                     };
-                    console.log(nextQuestion);
-                    // callback(null, {
-                    //     message: "Question",
-                    //     Question: Question,
-                    // });
+                    callback(null, {
+                        message: "Question",
+                        Question: Question,
+                    });
                 }
             }
             RoomData.populate("users.userData", "name photo rating");
             io.to(roomCode).emit("list", RoomData.users);
         } catch (e) {
-            // callback(e, null);
-            console.log(e);
+            callback(e, null);
         }
     });
     socket.on("cheated", async (roomCode) => {
@@ -240,7 +244,9 @@ io.on("connection", (socket) => {
                 return user.socketId === socket.id;
             });
             RoomData.users[index].status = "banned";
-            // socket.broadcast.to(RoomData.users[index].socketId).emit("bannedFromRoom");
+            socket.broadcast
+                .to(RoomData.users[index].socketId)
+                .emit("bannedFromRoom");
             await RoomData.save();
             io.to(roomCode).emit("list", RoomData.users);
         } catch (e) {
@@ -258,12 +264,11 @@ io.on("connection", (socket) => {
             if (RoomData.users[index].warning >= 3) {
                 RoomData.users[index].status = "banned";
                 await RoomData.save();
-                console.log("banned from room");
-                // callback("bannedFromRoom");
+                callback("bannedFromRoom");
                 RoomData.populate("users.userData", "name photo rating");
                 io.to(roomCode).emit("list", RoomData.users);
             }
-            // callback(null);
+            callback(null);
         } catch (e) {
             console.log(e);
         }
@@ -296,11 +301,9 @@ io.on("connection", (socket) => {
     socket.on("close", async (roomCode) => {
         try {
             socket.broadcast.to(roomCode).emit("roomClosed");
-            // send mail of Question pdf to all students as well as teacher
-            // send mail of scoresheet excell
-            // send mail of photos of students with right, wrong and skipped Question of students to teacher
-            await studentDataService(roomCode);
-            // update student, teacher and institute rating
+            mailQuestions(roomCode);
+            studentDataService(roomCode);
+            updateRating(roomCode);
             const data = await Room.deleteOne({ roomCode: roomCode });
         } catch (e) {
             console.log(e);
