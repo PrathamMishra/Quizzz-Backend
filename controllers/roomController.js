@@ -69,6 +69,7 @@ exports.createRoom = catchAsync(async (req, res, next) => {
     }
     const newRoom = new Room({
         roomCode: req.body.roomCode,
+        roomType: req.body.roomType,
         public: req.body.public,
         subject: req.body.subject,
         topic: req.body.topic,

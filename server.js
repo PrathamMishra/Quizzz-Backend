@@ -34,7 +34,8 @@ const io = new Server(server, {
 // websocketing
 io.on("connection", (socket) => {
     var count = 0;
-    socket.on("join", async ({ userId, roomCode, img }, callback) => {
+    socket.on("join", async ({ userId, roomCode }, callback) => {
+        console.log("hit");
         try {
             let RoomData = await Room.findOne({ roomCode });
             if (!RoomData) {
@@ -83,8 +84,6 @@ io.on("connection", (socket) => {
                 callback({ type: "known", message: "Room Full" });
                 return;
             }
-            console.log("NEW USER");
-            await User.findByIdAndUpdate(userId, { img });
             socket.join(roomCode);
             RoomData.users.push({ userData: userId, socketId: socket.id });
             await RoomData.save();
@@ -92,18 +91,15 @@ io.on("connection", (socket) => {
                 "users.userData",
                 "name photo rating"
             );
-            io.to(roomCode).emit("list", RoomData.users);
             callback(null, RoomData);
+            io.to(roomCode).emit("list", RoomData);
         } catch (e) {
             callback(e, null);
         }
     });
     socket.on("start", async (roomCode) => {
         try {
-            let RoomData = await Room.findOne(
-                { roomCode },
-                "started questionType randomQuestions addedQuestions"
-            );
+            let RoomData = await Room.findOne({ roomCode });
             RoomData.started = true;
             await RoomData.save();
             if (RoomData.questionType === "random") {
@@ -229,14 +225,15 @@ io.on("connection", (socket) => {
                 }
             }
             RoomData.populate("users.userData", "name photo rating");
-            io.to(roomCode).emit("list", RoomData.users);
+            io.to(roomCode).emit("list", RoomData);
         } catch (e) {
             callback(e, null);
         }
     });
     socket.on("cheated", async (roomCode) => {
         try {
-            let RoomData = await Room.findOne({ roomCode }, "users").populate(
+            console.log(roomCode);
+            let RoomData = await Room.findOne({ roomCode }).populate(
                 "users.userData",
                 "name photo rating"
             );
@@ -248,14 +245,14 @@ io.on("connection", (socket) => {
                 .to(RoomData.users[index].socketId)
                 .emit("bannedFromRoom");
             await RoomData.save();
-            io.to(roomCode).emit("list", RoomData.users);
+            io.to(roomCode).emit("list", RoomData);
         } catch (e) {
             console.log(e);
         }
     });
     socket.on("warning", async (callback) => {
         try {
-            let RoomData = await Room.findOne({ roomCode }, "users");
+            let RoomData = await Room.findOne({ roomCode });
             const index = RoomData.users.findIndex((user) => {
                 return user.socketId === socket.id;
             });
@@ -266,7 +263,7 @@ io.on("connection", (socket) => {
                 await RoomData.save();
                 callback("bannedFromRoom");
                 RoomData.populate("users.userData", "name photo rating");
-                io.to(roomCode).emit("list", RoomData.users);
+                io.to(roomCode).emit("list", RoomData);
             }
             callback(null);
         } catch (e) {
@@ -275,7 +272,7 @@ io.on("connection", (socket) => {
     });
     socket.on("removePerson", async (socketId, roomCode) => {
         try {
-            let RoomData = await Room.findOne({ roomCode }, "users");
+            let RoomData = await Room.findOne({ roomCode });
             const index = RoomData.users.findIndex((user) => {
                 return user.socketId === socketId;
             });
@@ -285,7 +282,7 @@ io.on("connection", (socket) => {
                 .emit("kickedFromRoom");
             await RoomData.save();
             RoomData.populate("users.userData", "name photo rating");
-            io.to(roomCode).emit("list", RoomData.users);
+            io.to(roomCode).emit("list", RoomData);
         } catch (e) {
             console.log(e);
         }
@@ -313,8 +310,9 @@ io.on("connection", (socket) => {
         const room = await Room.findOne({ roomCode });
         if (room) io.to(roomCode).emit("messageRecieved", { userId, text });
     });
-    socket.on("disconnect", async (roomCode) => {
+    socket.on("leaveRoom", async (roomCode) => {
         try {
+            console.log(roomCode);
             let RoomData = await Room.findOne(
                 { roomCode },
                 "users creatorSocket"
@@ -327,16 +325,17 @@ io.on("connection", (socket) => {
                 const data = await Room.deleteOne({ roomCode: roomCode });
             } else {
                 if (RoomData.users[index].status === "joined") {
-                    RoomData.users[index].status = "Left";
+                    RoomData.users[index].status = "left";
                 }
                 await RoomData.save();
                 RoomData.populate("users.userData", "name photo rating");
-                socket.broadcast.to(roomCode).emit("list", RoomData.users);
+                socket.broadcast.to(roomCode).emit("list", RoomData);
             }
         } catch (e) {
             console.log(e);
         }
     });
+    socket.on("disconnect", () => {});
 });
 
 // current working enverment
