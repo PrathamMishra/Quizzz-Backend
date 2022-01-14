@@ -7,29 +7,25 @@ const Question = require("../models/questionModel");
 const async = require("async");
 
 exports.getAllRooms = catchAsync(async (req, res, next) => {
-    const features = new APIFeatures(Room.find(), req.query)
+    console.log("hit");
+    const features = new APIFeatures(Room.find(), req.body)
         .filter()
         .sort()
         .limitFields()
         .paginate();
 
     const rooms = await features.query;
+    console.log(rooms);
 
-    res.status(200).json({
-        numberOfRooms: rooms.length,
-        data: {
-            rooms,
-        },
-    });
+    res.status(200).json(rooms);
 });
 
 exports.getRoomDetails = catchAsync(async (req, res, next) => {
-    let room = await Room.findOne({ roomCode: req.body.roomCode }).populate(
+    console.log("hit");
+    let room = await Room.findOne(req.query).populate(
         "creator",
         "name rating photo"
     );
-
-    if (!room) return next(new AppError("No Room found with that Id", 404));
 
     res.status(200).json(room);
 });

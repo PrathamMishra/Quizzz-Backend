@@ -1,16 +1,13 @@
-const express = require('express')
-const roomController = require('../controllers/roomController');
+const express = require("express");
+const roomController = require("../controllers/roomController");
 
-
-const router = express.Router()
-
-router
-    .route('/joinRoom')
-    .get(roomController.getAllRooms)
-    .post(roomController.getRoomDetails);
+const router = express.Router();
 
 router
-    .route('/createRoom')
-    .post(roomController.createRoom)
+    .route("/joinRoom")
+    .post(roomController.getAllRooms)
+    .get(roomController.getRoomDetails);
+
+router.route("/createRoom").post(roomController.createRoom);
 
 module.exports = router;

@@ -104,7 +104,7 @@ io.on("connection", (socket) => {
             await RoomData.save();
             if (RoomData.questionType === "random") {
                 let currentQuestion = await Question.findById(
-                    RoomData.randomQuestions[count]
+                    RoomData.randomQuestions[0]
                 );
                 const nextQuestion = {
                     question_img: currentQuestion.question_img,
@@ -123,7 +123,7 @@ io.on("connection", (socket) => {
                     .emit("matchStarted", nextQuestion);
             } else {
                 let currentQuestion = await tempQuestion.findById(
-                    RoomData.addedQuestions[count]
+                    RoomData.addedQuestions[0]
                 );
                 const nextQuestion = {
                     question_img: currentQuestion.question_img,
@@ -335,7 +335,9 @@ io.on("connection", (socket) => {
             console.log(e);
         }
     });
-    socket.on("disconnect", () => {});
+    socket.on("disconnect", () => {
+        socket.leave();
+    });
 });
 
 // current working enverment
