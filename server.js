@@ -26,7 +26,7 @@ const port = process.env.PORT || 3000;
 // creating web socket
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: process.env.ALLOW_ORIGIN,
         credentials: true,
     },
 });

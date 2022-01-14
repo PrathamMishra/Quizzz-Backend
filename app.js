@@ -1,4 +1,5 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const morgan = require("morgan");
 const osSeedData = require("./main__os.json");
 const cnSeedData = require("./main__cn.json");
@@ -11,11 +12,12 @@ const questionRouter = require("./routes/questionRoutes");
 const userRouter = require("./routes/userRoutes");
 const roomRouter = require("./routes/roomRoutes");
 
+dotenv.config({ path: "./config.env" });
+
 const app = express();
 
 const corsOptions = {
-    origin: "*",
-    credentials: true,
+    origin: process.env.ALLOW_ORIGIN,
     optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));

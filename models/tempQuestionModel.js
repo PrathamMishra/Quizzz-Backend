@@ -43,7 +43,7 @@ const tempQuestionSchema = new mongoose.Schema({
         trim: true,
     },
     explanation_img: {
-        type: [String],
+        type: String,
     },
     description: {
         type: String,
@@ -52,13 +52,12 @@ const tempQuestionSchema = new mongoose.Schema({
     subject: String,
     topic: String,
     chapterOf: {
-        type: String,
-        default: "",
-        trim: true,
+        type: Number,
+        default: 0,
     },
     // [jees 2001 ,neet 2015]
     questionPreviousRecord: {
-        type: [String],
+        type: String,
         trim: true,
     },
     marks: {

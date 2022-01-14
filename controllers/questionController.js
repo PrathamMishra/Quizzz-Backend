@@ -1,7 +1,9 @@
 const Question = require("./../models/questionModel");
+const tempQuestion = require("./../models/tempQuestionModel");
 const AppError = require("../utils/appError");
 const APIFeatures = require("../utils/apiFeatures");
 const catchAsync = require("../utils/catchAsync");
+const { rawListeners } = require("./../models/questionModel");
 
 exports.getAllQuestions = catchAsync(async (req, res, next) => {
     const features = new APIFeatures(Question.find(), req.query)
@@ -142,3 +144,27 @@ exports.getRendomQuestion = catchAsync(async (req, res, next) => {
 //         data: questions
 //     });
 //   })
+
+exports.createTempQuestion = async (req, res, next) => {
+    try {
+        const temp = {
+            ...req.body,
+            timeLimit: parseInt(req.body.timeLimit),
+            marks: parseInt(req.body.marks),
+            negativeMarks: parseInt(req.body.negativeMarks),
+            chapterOf: parseInt(req.body.chapterOf),
+        };
+        const newQuestion = await tempQuestion.create(temp);
+        res.status(201).json({
+            status: "Succes",
+            data: {
+                id: newQuestion._id,
+            },
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(400).json({
+            message: e,
+        });
+    }
+};

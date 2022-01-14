@@ -1,22 +1,24 @@
-const express = require('express')
-const questionController = require('../controllers/questionController');
+const express = require("express");
+const questionController = require("../controllers/questionController");
 
+const router = express.Router();
 
-const router = express.Router()
-
-router.get("/getRendomAuestion/:numberOfQuestion",questionController.getRendomQuestion)
+router.get(
+    "/getRendomAuestion/:numberOfQuestion",
+    questionController.getRendomQuestion
+);
 
 router
-    .route('/')
+    .route("/")
     .get(questionController.getAllQuestions)
     .post(questionController.createQuestion);
 
 router
-    .route('/:id')
+    .route("/:id")
     .get(questionController.getQuestion)
     .patch(questionController.updateQuestion)
     .delete(questionController.deleteQuestion);
 
-
+router.post("/createTempQuestion", questionController.createTempQuestion);
 
 module.exports = router;
