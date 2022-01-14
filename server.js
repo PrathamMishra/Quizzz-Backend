@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const http = require("http");
 const { Server } = require("socket.io");
 
@@ -14,9 +14,6 @@ const Question = require("./models/questionModel");
 const tempQuestion = require("./models/tempQuestionModel");
 const User = require("./models/userModel.js");
 const catchAsync = require("./utils/catchAsync");
-
-// Lode enverment variables
-dotenv.config({ path: "./config.env" });
 
 // creating server
 

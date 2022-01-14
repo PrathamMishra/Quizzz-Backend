@@ -1,5 +1,5 @@
 const express = require("express");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const morgan = require("morgan");
 const osSeedData = require("./main__os.json");
 const cnSeedData = require("./main__cn.json");
@@ -11,8 +11,6 @@ const globalErrorHandler = require("./controllers/errorController");
 const questionRouter = require("./routes/questionRoutes");
 const userRouter = require("./routes/userRoutes");
 const roomRouter = require("./routes/roomRoutes");
-
-dotenv.config({ path: "./config.env" });
 
 const app = express();
 
